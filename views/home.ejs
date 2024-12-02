@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <%- include('./partials/head') %>
+        <style>
+            .card-img-top {
+                object-fit: cover;
+                height: 300px;
+            }
+            .card:hover {
+                transform: scale(1.03);
+                transition: transform 0.2s ease-in-out;
+            }
+            .container {
+                max-width: 1200px;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('./partials/navbar') %>
+        <div class="container mt-5 mb-4">
+
+            <div class="container mt-4">
+                <div class="text-center mb-4">
+                    <h1 class="fw-bold">Welcome to Our Blog</h1>
+                    <p class="text-muted">
+                        Discover insightful articles, tips, and stories from our community. Dive into a variety of topics, explore fresh ideas, and stay inspired!
+                    </p>
+                </div>
+            </div>            
+
+            <div class="row g-4">
+                <% blogs.forEach(blog => { %>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="Blog Image">
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><%= blog.title %></h5>
+                                <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>        
+        <%- include('./partials/scripts') %>
+    </body>
+</html>
