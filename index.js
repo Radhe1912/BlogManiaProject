@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const favicon = require('serve-favicon');
 
 const userRoutes = require('./routes/user_router');
 const blogRoutes = require('./routes/blog_routes');
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));  // check if token available
 app.use(express.static(path.resolve('./public')));    // make every data static in public as image can be rendered on the webpage
 app.use('/Images', express.static(path.join(__dirname, 'public/Images')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 const MONGO_URL = process.env.MONGO_URL;
 
